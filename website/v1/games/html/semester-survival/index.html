@@ -21,10 +21,10 @@
 <main class="ss-shell">
 <section class="ss-game-column">
 <div class="ss-topline"><div><span class="ss-eyebrow">YOUR UNIVERSITY STORY</span><h1>A new chapter begins.</h1></div><div class="ss-day-chip"><span id="day-label">MONDAY</span><strong id="clock-label">08:00</strong></div></div>
-<div class="ss-stage-wrap"><div class="ss-stage-sky"></div><canvas id="game-canvas" width="960" height="620" aria-label="2D anime-inspired university campus. Use WASD or arrow keys to move."></canvas>
-<div class="ss-location-pill"><span class="ss-pulse"></span><span id="location-label">University Green</span></div><button class="ss-pause-btn" id="pause-game" type="button" aria-label="Pause game">Ⅱ</button><div class="ss-stage-tip" id="stage-tip">WASD / arrows move · Shift run · E interact</div>
+<div class="ss-stage-wrap"><div class="ss-stage-sky"></div><canvas id="game-canvas" width="960" height="620" aria-label="2D anime-inspired university campus. Swipe left/right to change lanes, swipe up to jump, swipe down to slide. Use arrow keys on PC."></canvas>
+<div class="ss-location-pill"><span class="ss-pulse"></span><span id="location-label">University Green</span></div><button class="ss-pause-btn" id="pause-game" type="button" aria-label="Pause game">Ⅱ</button><div class="ss-stage-tip" id="stage-tip">SWIPE: LEFT / RIGHT · UP: JUMP · DOWN: SLIDE</div>
 <button class="ss-interact-prompt hidden" id="interact-prompt" type="button"><span>E</span><strong id="interact-text">Interact</strong></button>
-<div class="ss-mobile-pad"><button data-move="up" aria-label="Move up">▲</button><div><button data-move="left" aria-label="Move left">◀</button><button data-move="down" aria-label="Move down">▼</button><button data-move="right" aria-label="Move right">▶</button></div><button class="ss-run-btn" data-move="sprint" aria-label="Run while moving">RUN</button></div></div>
+</div>
 <div class="ss-hud-row">
 <div class="ss-stat"><span class="ss-stat-icon">♡</span><div><small>ENERGY</small><strong id="energy-value">82%</strong><div class="ss-meter"><i id="energy-meter"></i></div></div></div>
 <div class="ss-stat"><span class="ss-stat-icon">☀</span><div><small>HUNGER</small><strong id="hunger-value">28%</strong><div class="ss-meter hunger"><i id="hunger-meter"></i></div></div></div>
@@ -48,7 +48,7 @@
 <label class="ss-field">Display name<input id="name-input" maxlength="24" value="New Student"></label><label class="ss-field">Course<select id="course-input"><option>Data Science</option><option>Computer Science</option><option>Business</option><option>Engineering</option><option>Medicine</option><option>Arts & Humanities</option><option>Other</option></select></label>
 <button class="ss-primary-btn" id="save-profile">Save profile</button><button class="ss-text-btn" id="reset-progress">Reset saved progress</button></section>
 </aside></main>
-<div class="ss-bottom-strip"><div><span class="ss-live-dot"></span> YOUR STORY IS SAVED ON THIS DEVICE</div><div><span>MOVE</span> WASD / ARROWS <span>INTERACT</span> E / SPACE <span>PAUSE</span> P / ESC</div></div>
+<div class="ss-bottom-strip"><div><span class="ss-live-dot"></span> YOUR STORY IS SAVED ON THIS DEVICE</div><div><span>PC</span> ARROWS: CHANGE LANE / JUMP / SLIDE <span>INTERACT</span> E / SPACE <span>PAUSE</span> P / ESC</div></div>
 <div class="ss-modal hidden" id="dialogue-modal" role="dialog" aria-modal="true" aria-labelledby="dialogue-title"><div class="ss-dialogue-card"><div class="ss-dialogue-art" id="dialogue-art">✦</div><div class="ss-dialogue-copy"><span class="ss-eyebrow" id="dialogue-kicker">CAMPUS MOMENT</span><h2 id="dialogue-title">A moment on campus</h2><p id="dialogue-body"></p><div class="ss-choice-list" id="dialogue-choices"></div></div><button class="ss-close" id="dialogue-close" aria-label="Close">×</button></div></div>
 <div class="ss-toast" id="toast" role="status"></div>
 <section class="TEMPLATE-4weird-credits-section ss-credits" id="TEMPLATE-4weird-credits"><div class="TEMPLATE-4weird-credits-container"><h2 class="TEMPLATE-4weird-credits-title">The people behind the story</h2><div class="TEMPLATE-4weird-credits-grid" id="TEMPLATE-4weird-credits-grid"></div></div></section>

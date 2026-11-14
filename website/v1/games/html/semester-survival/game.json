@@ -1,57 +1,95 @@
 {
-    "title": "Semester Survival",
-    "slug": "semester-survival",
-    "description": "Survive 8 chaotic semesters of lectures, exams, portal downs, and empty wallets to graduate without getting expelled!",
-    "genre": "Endless Runner",
-    "tags": ["HTML5", "3D", "Runner", "University", "Arcade"],
-    "maker": {
-        "name": "Joseph Ombati & Antigravity",
-        "bio": "A collaboration between concept designer Joseph Ombati and Antigravity to create the ultimate premium university simulation running game.",
-        "url": "https://4weird.games",
-        "urlLabel": "4weird Games"
+  "title": "Semester Survival",
+  "slug": "semester-survival",
+  "description": "Eight semesters. One degree. Build a life, make friends, survive deadlines and find your own path through university.",
+  "genre": "2D Anime Life Simulation",
+  "tags": [
+    "HTML5",
+    "2D",
+    "Anime",
+    "Life Simulation",
+    "University",
+    "Story",
+    "Campus"
+  ],
+  "maker": {
+    "name": "Joseph Ombati & Antigravity",
+    "bio": "Semester Survival began as an idea from Joseph Ombati: a university-life simulation about the funny, stressful and unforgettable moments that shape a student. Built for players who know that making it to graduation is about more than passing exams. The game celebrates campus friendships, small wins, difficult choices and the everyday courage it takes to keep going.",
+    "url": "https://4weird.games",
+    "urlLabel": "4weird Games"
+  },
+  "credits": [
+    {
+      "name": "Joseph Ombati",
+      "role": "Original Concept, Game Design & Creative Direction",
+      "avatar": "🎓",
+      "primary": true
     },
-    "credits": [
-        {
-            "name": "Joseph Ombati",
-            "role": "Concept & Design",
-            "avatar": "🎓",
-            "primary": true
-        },
-        {
-            "name": "Antigravity",
-            "role": "Lead Developer & UI Designer",
-            "avatar": "🤖",
-            "primary": true,
-            "url": "https://4weird.games",
-            "urlLabel": "4weird"
-        }
-    ],
-    "controls": {
-        "keyboard": {
-            "A / D or Arrow Left / Right": "Switch Lanes",
-            "W or Arrow Up": "Jump over obstacles",
-            "S or Arrow Down": "Slide under obstacles",
-            "P or Escape": "Pause / Resume"
-        },
-        "touch": {
-            "swipe": "Swipe Left / Right / Up / Down",
-            "buttons": "Touch buttons on mobile screen"
-        },
-        "mouse": false
+    {
+      "name": "Antigravity",
+      "role": "Lead Development & Interface Design",
+      "avatar": "🤖",
+      "primary": true,
+      "url": "https://4weird.games",
+      "urlLabel": "4weird"
     },
-    "instructions": "Navigate your student through three lanes to dodge academic threats like assignment deadlines, portal crashes, and stress while collecting coffee, lecture notes, and HELB loans. Complete objectives to pass the final exam/boss of each semester and advance. Survive all 8 semesters to graduate!",
-    "technical": {
-        "canvasSize": {"width": 800, "height": 600},
-        "targetFPS": 60,
-        "mobileOptimized": true
-    },
-    "assets": {
-        "external": ["https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"],
-        "local": ["sound.js", "state.js", "controls.js", "renderer.js", "ui.js", "game.js", "game.css"]
-    },
-    "meta": {
-        "version": "1.0.0",
-        "created": "2026-06-28",
-        "license": "Private - All Rights Reserved"
+    {
+      "name": "MattyJacks",
+      "role": "Producer & Platform Architect",
+      "avatar": "👑",
+      "primary": false,
+      "url": "https://mattyjacks.com",
+      "urlLabel": "MattyJacks"
     }
+  ],
+  "controls": {
+    "keyboard": {
+      "WASD / Arrow Keys": "Walk around campus",
+      "E / Space": "Talk, attend, study or interact",
+      "P / Escape": "Pause or resume",
+      "Shift": "Run while moving"
+    },
+    "touch": {
+      "Directional Pad": "Move around campus",
+      "Interact prompt": "Use the on-screen interaction prompt",
+      "Run button": "Hold RUN while using the directional pad"
+    },
+    "mouse": true
+  },
+  "instructions": "Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate. Hold Shift on keyboard or RUN on mobile to move faster.",
+  "technical": {
+    "canvasSize": {
+      "width": 960,
+      "height": 620
+    },
+    "targetFPS": 60,
+    "mobileOptimized": true,
+    "engine": "HTML5 Canvas 2D and vanilla JavaScript",
+    "spriteSheet": {
+      "path": "assets/student-sprites.svg",
+      "format": "SVG",
+      "characters": 4,
+      "walkFramesPerCharacter": 4
+    }
+  },
+  "assets": {
+    "external": [],
+    "local": [
+      "index.html",
+      "game.css",
+      "game.js",
+      "state.js",
+      "renderer.js",
+      "controls.js",
+      "ui.js",
+      "sound.js",
+      "assets/student-sprites.svg"
+    ]
+  },
+  "meta": {
+    "version": "2.1.0",
+    "created": "2026-11-14",
+    "license": "Private - All Rights Reserved",
+    "ownership": "Joseph Ombati retains full ownership of the game and code. 4weird is granted the right to host and showcase the game under its contributor terms."
+  }
 }

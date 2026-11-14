@@ -1,16 +1,93 @@
 {
-  "title":"Semester Survival","slug":"semester-survival",
-  "description":"Eight semesters. One degree. Build a life, make friends, survive deadlines and find your own path through university.",
-  "genre":"2D Anime Life Simulation","tags":["HTML5","2D","Anime","Life Simulation","University","Story","Campus"],
-  "maker":{"name":"Joseph Ombati & Antigravity","bio":"Semester Survival began as an idea from Joseph Ombati: a university-life simulation about the funny, stressful and unforgettable moments that shape a student. Built for players who know that making it to graduation is about more than passing exams. The game celebrates campus friendships, small wins, difficult choices and the everyday courage it takes to keep going.","url":"https://4weird.games","urlLabel":"4weird Games"},
-  "credits":[
-    {"name":"Joseph Ombati","role":"Original Concept, Game Design & Creative Direction","avatar":"🎓","primary":true},
-    {"name":"Antigravity","role":"Lead Development & Interface Design","avatar":"🤖","primary":true,"url":"https://4weird.games","urlLabel":"4weird"},
-    {"name":"MattyJacks","role":"Producer & Platform Architect","avatar":"👑","primary":false,"url":"https://mattyjacks.com","urlLabel":"MattyJacks"}
+  "title": "Semester Survival",
+  "slug": "semester-survival",
+  "description": "Eight semesters. One degree. Build a life, make friends, survive deadlines and find your own path through university.",
+  "genre": "2D Anime Life Simulation",
+  "tags": [
+    "HTML5",
+    "2D",
+    "Anime",
+    "Life Simulation",
+    "University",
+    "Story",
+    "Campus"
   ],
-  "controls":{"keyboard":{"WASD / Arrow Keys":"Walk around campus","E / Space":"Talk, attend, study or interact","P / Escape":"Pause or resume"},"touch":{"Directional Pad":"Move around campus","Interact prompt":"Use the on-screen interaction prompt"},"mouse":true},
-  "instructions":"Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate.",
-  "technical":{"canvasSize":{"width":960,"height":620},"targetFPS":60,"mobileOptimized":true,"engine":"HTML5 Canvas 2D and vanilla JavaScript"},
-  "assets":{"external":[],"local":["index.html","game.css","game.js","state.js","renderer.js","controls.js","ui.js","sound.js"]},
-  "meta":{"version":"2.0.0","created":"2026-11-14","license":"Private - All Rights Reserved","ownership":"Joseph Ombati retains full ownership of the game and code. 4weird is granted the right to host and showcase the game under its contributor terms."}
+  "maker": {
+    "name": "Joseph Ombati & Antigravity",
+    "bio": "Semester Survival began as an idea from Joseph Ombati: a university-life simulation about the funny, stressful and unforgettable moments that shape a student. Built for players who know that making it to graduation is about more than passing exams. The game celebrates campus friendships, small wins, difficult choices and the everyday courage it takes to keep going.",
+    "url": "https://4weird.games",
+    "urlLabel": "4weird Games"
+  },
+  "credits": [
+    {
+      "name": "Joseph Ombati",
+      "role": "Original Concept, Game Design & Creative Direction",
+      "avatar": "🎓",
+      "primary": true
+    },
+    {
+      "name": "Antigravity",
+      "role": "Lead Development & Interface Design",
+      "avatar": "🤖",
+      "primary": true,
+      "url": "https://4weird.games",
+      "urlLabel": "4weird"
+    },
+    {
+      "name": "MattyJacks",
+      "role": "Producer & Platform Architect",
+      "avatar": "👑",
+      "primary": false,
+      "url": "https://mattyjacks.com",
+      "urlLabel": "MattyJacks"
+    }
+  ],
+  "controls": {
+    "keyboard": {
+      "WASD / Arrow Keys": "Walk around campus",
+      "E / Space": "Talk, attend, study or interact",
+      "P / Escape": "Pause or resume"
+    },
+    "touch": {
+      "Directional Pad": "Move around campus",
+      "Interact prompt": "Use the on-screen interaction prompt"
+    },
+    "mouse": true
+  },
+  "instructions": "Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate.",
+  "technical": {
+    "canvasSize": {
+      "width": 960,
+      "height": 620
+    },
+    "targetFPS": 60,
+    "mobileOptimized": true,
+    "engine": "HTML5 Canvas 2D and vanilla JavaScript",
+    "spriteSheet": {
+      "path": "assets/student-sprites.svg",
+      "format": "SVG",
+      "characters": 4,
+      "walkFramesPerCharacter": 4
+    }
+  },
+  "assets": {
+    "external": [],
+    "local": [
+      "index.html",
+      "game.css",
+      "game.js",
+      "state.js",
+      "renderer.js",
+      "controls.js",
+      "ui.js",
+      "sound.js",
+      "assets/student-sprites.svg"
+    ]
+  },
+  "meta": {
+    "version": "2.1.0",
+    "created": "2026-11-14",
+    "license": "Private - All Rights Reserved",
+    "ownership": "Joseph Ombati retains full ownership of the game and code. 4weird is granted the right to host and showcase the game under its contributor terms."
+  }
 }

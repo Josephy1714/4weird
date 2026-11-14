@@ -25,3 +25,5 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .ss-pause-btn:focus-visible,.ss-interact-prompt:focus-visible,.ss-mobile-pad button:focus-visible{outline:3px solid #d59b78;outline-offset:3px}
+
+.ss-run-btn{min-width:58px!important;height:32px!important;margin-top:5px;border-color:#fff!important;background:#e7c3a0!important;color:#6b4e48!important;font-size:9px!important;font-weight:900!important;letter-spacing:.08em;box-shadow:0 3px 10px #405a6820}

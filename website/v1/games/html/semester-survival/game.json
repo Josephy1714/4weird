@@ -46,15 +46,17 @@
     "keyboard": {
       "WASD / Arrow Keys": "Walk around campus",
       "E / Space": "Talk, attend, study or interact",
-      "P / Escape": "Pause or resume"
+      "P / Escape": "Pause or resume",
+      "Shift": "Run while moving"
     },
     "touch": {
       "Directional Pad": "Move around campus",
-      "Interact prompt": "Use the on-screen interaction prompt"
+      "Interact prompt": "Use the on-screen interaction prompt",
+      "Run button": "Hold RUN while using the directional pad"
     },
     "mouse": true
   },
-  "instructions": "Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate.",
+  "instructions": "Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate. Hold Shift on keyboard or RUN on mobile to move faster.",
   "technical": {
     "canvasSize": {
       "width": 960,

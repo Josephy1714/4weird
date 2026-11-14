@@ -1,483 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Semester Survival - 4weird Games</title>
-    <meta name="description" content="Survive 8 semesters of lectures, exams, portal downs, and empty wallets to graduate in this premium 3D runner.">
-    <meta name="keywords" content="4weird, Semester Survival, HTML5 game, browser game, retro, 3D, three.js, university">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Semester Survival - 4weird Games">
-    <meta property="og:description" content="Survive university life, avoid SUPPs, dodge deadlines, and walk the graduation stage!">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Base Styles -->
-    <link rel="stylesheet" href="../../../styles.css">
-    <link rel="stylesheet" href="game.css">
-    
-    <!-- Game Metadata -->
-    <script src="game.json" type="application/json" id="game-metadata"></script>
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101d35">
+<title>Semester Survival - 4weird Games</title>
+<meta name="description" content="Eight semesters. One degree. Build a life, make friends, survive deadlines and find your own path through university.">
+<meta name="keywords" content="4weird, Semester Survival, anime game, university simulation, HTML5">
+<meta property="og:title" content="Semester Survival - 4weird Games"><meta property="og:description" content="A 2D anime-inspired university life simulation."><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="game.css">
 </head>
-<body class="TEMPLATE-4weird-game-page">
-    <div class="cyber-bg-dots"></div>
-    
-    <!-- Navigation placeholder -->
-    <div id="TEMPLATE-4weird-nav-placeholder"></div>
-    
-    <!-- Game Header Bar -->
-    <header class="TEMPLATE-4weird-game-header">
-        <div class="TEMPLATE-4weird-game-header-inner">
-            <a href="../../../index.html#games" class="TEMPLATE-4weird-back-link">
-                <span class="TEMPLATE-4weird-back-arrow">←</span>
-                <span>University Exit</span>
-            </a>
-            <h1 class="TEMPLATE-4weird-game-title" id="TEMPLATE-4weird-game-title">Semester Survival</h1>
-            <div class="TEMPLATE-4weird-game-meta" id="TEMPLATE-4weird-game-meta">
-                <span class="TEMPLATE-4weird-game-genre" id="TEMPLATE-4weird-game-genre">3D Endless Runner</span>
-                <span class="TEMPLATE-4weird-game-status live">CAMPUS ONLINE</span>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Main Game Container -->
-    <main class="TEMPLATE-4weird-game-main">
-        <!-- Game Canvas Frame -->
-        <div class="TEMPLATE-4weird-game-frame">
-            <button class="TEMPLATE-4weird-fullscreen-btn" id="TEMPLATE-4weird-fullscreen-btn" title="Toggle Fullscreen">📺 Expand screen</button>
-            
-            <!-- Real-time game HUD -->
-            <div id="game-hud" class="hidden">
-                <!-- Semester & Distance -->
-                <div class="hud-item">
-                    <span class="hud-label" id="hud-semester-title">SEMESTER 1</span>
-                    <span id="hud-distance" class="hud-value">0m</span>
-                </div>
-                <!-- GPA Gauge -->
-                <div class="hud-item hud-integrity-container">
-                    <span class="hud-label">CURRENT GPA: <span id="hud-gpa-val">4.00</span></span>
-                    <div class="integrity-bar-bg gpa-bg">
-                        <div id="hud-gpa-bar" class="gpa-bar" style="width: 100%;"></div>
-                    </div>
-                </div>
-                <!-- Energy Gauge -->
-                <div class="hud-item hud-integrity-container">
-                    <span class="hud-label">ENERGY: <span id="hud-energy-percent">100</span>%</span>
-                    <div class="integrity-bar-bg energy-bg">
-                        <div id="hud-energy-bar" class="energy-bar" style="width: 100%;"></div>
-                    </div>
-                </div>
-                <!-- Coins / Study Tokens -->
-                <div class="hud-item">
-                    <span class="hud-label">POCKET MONEY</span>
-                    <span id="hud-coins" class="hud-value">🪙 0</span>
-                </div>
-                <!-- Boss Health Bar (Hidden unless boss active) -->
-                <div id="boss-hud-container" class="hidden">
-                    <span class="hud-label text-danger" id="boss-title">BOSS: FIRST CAT</span>
-                    <div class="integrity-bar-bg boss-bg">
-                        <div id="boss-health-bar" class="boss-health-bar" style="width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Virtual Controls (Mobile Only) -->
-            <div class="mobile-touch-controls" id="mobile-touch-controls-overlay">
-                <div class="mobile-swipe-zone" id="mobile-swipe-zone">
-                    <span class="swipe-hint">Swipe to Move / Jump / Slide</span>
-                </div>
-                <div class="mobile-buttons-container">
-                    <button class="mobile-action-btn" id="btn-left">◀ Lane</button>
-                    <button class="mobile-action-btn" id="btn-jump">▲ Jump</button>
-                    <button class="mobile-action-btn" id="btn-slide">▼ Slide</button>
-                    <button class="mobile-action-btn" id="btn-right">Lane ▶</button>
-                </div>
-            </div>
-
-            <!-- Canvas for Three.js -->
-            <canvas id="TEMPLATE-4weird-gameCanvas"></canvas>
-            
-            <!-- Loading Screen -->
-            <div class="TEMPLATE-4weird-loading-screen" id="TEMPLATE-4weird-loading-screen">
-                <div class="spinner"></div>
-                <h3 style="font-family: var(--font-cyber); letter-spacing: 2px; color: var(--neon-cyan); font-size: 0.9rem; margin-top: 15px;">DOWNLOADING CAMPUS DATA...</h3>
-            </div>
-
-            <!-- Game Start / Main Menu Screen -->
-            <div class="TEMPLATE-4weird-game-overlay" id="TEMPLATE-4weird-start-screen">
-                <div class="TEMPLATE-4weird-overlay-content main-menu-content">
-                    <h2 class="game-logo">SEMESTER SURVIVAL</h2>
-                    <p class="game-tagline">Graduation is the goal. University has other plans.</p>
-                    
-                    <div class="menu-navigation">
-                        <button class="btn btn-primary" id="btn-start-run">
-                            <span class="btn-emoji">🎮</span> START RUN
-                        </button>
-                        <button class="btn btn-secondary" id="btn-open-shop">
-                            <span class="btn-emoji">🛒</span> SHOP & UPGRADES
-                        </button>
-                        <button class="btn btn-secondary" id="btn-open-achievements">
-                            <span class="btn-emoji">🏆</span> STATS & BADGES
-                        </button>
-                        <button class="btn btn-secondary" id="btn-open-settings">
-                            <span class="btn-emoji">⚙️</span> SETTINGS
-                        </button>
-                    </div>
-
-                    <!-- Current Semester Summary Card -->
-                    <div class="current-status-card">
-                        <p><strong>Current Standing:</strong> Semester <span id="menu-current-semester">1</span></p>
-                        <p><strong>Standing GPA:</strong> <span id="menu-standing-gpa">4.00</span></p>
-                        <p><strong>Pocket Balance:</strong> 🪙 <span id="menu-pocket-money">0</span></p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Shop / Upgrades Screen -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="overlay-shop">
-                <div class="TEMPLATE-4weird-overlay-content shop-content">
-                    <h2>CAMPUS SHOP</h2>
-                    <div class="shop-tabs">
-                        <button class="shop-tab-btn active" id="tab-upgrades">Upgrades</button>
-                        <button class="shop-tab-btn" id="tab-characters">Characters</button>
-                    </div>
-
-                    <!-- Upgrades List -->
-                    <div class="shop-tab-pane active" id="pane-upgrades">
-                        <div class="upgrades-grid" id="upgrades-list-container">
-                            <!-- Populated dynamically by UI module -->
-                        </div>
-                    </div>
-
-                    <!-- Characters List -->
-                    <div class="shop-tab-pane" id="pane-characters">
-                        <div class="characters-grid" id="characters-list-container">
-                            <!-- Populated dynamically by UI module -->
-                        </div>
-                    </div>
-
-                    <div class="shop-footer">
-                        <span class="money-display">Pocket Money: 🪙 <span id="shop-money-val">0</span></span>
-                        <button class="btn btn-secondary" id="btn-close-shop">Back to Menu</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats & Achievements / Badges Screen -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="overlay-achievements">
-                <div class="TEMPLATE-4weird-overlay-content achievements-content">
-                    <h2>ACADEMIC RECORD</h2>
-                    
-                    <div class="achievements-layout">
-                        <!-- Stats Column -->
-                        <div class="stats-panel">
-                            <h3>Lifetime Transcript</h3>
-                            <div class="stats-list" id="stats-list-container">
-                                <!-- Populated dynamically by UI module -->
-                            </div>
-                        </div>
-
-                        <!-- Badges/Achievements Column -->
-                        <div class="badges-panel">
-                            <h3>Earned Badges</h3>
-                            <div class="badges-grid" id="badges-grid-container">
-                                <!-- Populated dynamically by UI module -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="shop-footer">
-                        <button class="btn btn-secondary" id="btn-close-achievements">Back to Menu</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Settings Screen -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="overlay-settings">
-                <div class="TEMPLATE-4weird-overlay-content settings-content">
-                    <h2>SETTINGS</h2>
-                    
-                    <div class="settings-list">
-                        <div class="setting-item">
-                            <label for="setting-sound">Sound Effects & Synth</label>
-                            <input type="checkbox" id="setting-sound" checked>
-                        </div>
-                        <div class="setting-item">
-                            <label for="setting-premium">Sandbox Premium Account</label>
-                            <input type="checkbox" id="setting-premium">
-                        </div>
-                        <div class="setting-item">
-                            <label for="setting-controls">Control Layout</label>
-                            <select id="setting-controls">
-                                <option value="swipe">Touch Swipes</option>
-                                <option value="buttons">Touch Buttons</option>
-                            </select>
-                        </div>
-                        <div class="setting-item danger-section">
-                            <button class="btn btn-danger" id="btn-reset-progress">RESET ACADEMIC PROGRESS</button>
-                        </div>
-                    </div>
-
-                    <div class="shop-footer">
-                        <button class="btn btn-secondary" id="btn-close-settings">Back to Menu</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Pause Overlay -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="TEMPLATE-4weird-pause-screen">
-                <div class="TEMPLATE-4weird-overlay-content">
-                    <h2>LECTURE PAUSED</h2>
-                    <p style="margin-bottom: 20px;">The time-space continuum of the lecture is suspended.</p>
-                    <button class="btn btn-primary" id="TEMPLATE-4weird-resume-btn">RESUME RUN</button>
-                    <button class="btn btn-secondary" id="TEMPLATE-4weird-restart-btn">ABANDON SEMESTER</button>
-                </div>
-            </div>
-            
-            <!-- FAIL STATE A: SUPP (Academic Probation) -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="fail-overlay-supp">
-                <div class="TEMPLATE-4weird-overlay-content fail-panel supp-panel">
-                    <h2 class="fail-header text-danger">SUPPLEMENTARY ASSIGNED</h2>
-                    <div class="fail-body">
-                        <p class="fail-message">"Your GPA fell below the academic minimum. You have been assigned a SUPP."</p>
-                        <p class="fail-stats">Final GPA: <span id="fail-supp-gpa">0.00</span> | Semester: <span id="fail-supp-semester">1</span></p>
-                        
-                        <div class="supp-options">
-                            <button class="btn btn-primary" id="btn-supp-pay">
-                                Pay SUPP Fee (🪙 100)
-                            </button>
-                            <button class="btn btn-secondary" id="btn-supp-mercy">
-                                Use Dean's Mercy (<span id="supp-mercy-count">0</span> left)
-                            </button>
-                            <button class="btn btn-secondary" id="btn-supp-ad">
-                                Wait for Class Rep (Simulate Ad)
-                            </button>
-                            <button class="btn btn-danger" id="btn-supp-repeat">
-                                Repeat Semester (Reset run)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAIL STATE B: BURNOUT / stress (Energy depletion) -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="fail-overlay-burnout">
-                <div class="TEMPLATE-4weird-overlay-content fail-panel burnout-panel">
-                    <h2 class="fail-header text-warning">STRESS BURNOUT COLLAPSE</h2>
-                    <div class="fail-body">
-                        <p class="fail-message" id="fail-burnout-msg">"You collapsed from stress. Slept for 48 hours straight."</p>
-                        <p class="fail-stats">Distance Survived: <span id="fail-burnout-dist">0m</span></p>
-                        <div class="revive-options">
-                            <button class="btn btn-primary btn-revive">Revive (🪙 50 / Free Premium)</button>
-                            <button class="btn btn-secondary btn-fail-exit">Back to Campus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAIL STATE C: PORTAL CRASH (Academic Disqualification) -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="fail-overlay-portal">
-                <div class="TEMPLATE-4weird-overlay-content fail-panel portal-panel">
-                    <h2 class="fail-header text-danger">PORTAL ERROR: SUBMISSION FAILED</h2>
-                    <div class="fail-body">
-                        <p class="fail-message">"The portal crashed before your submission could be registered. GPA vanished."</p>
-                        <p class="fail-stats">Current Balance: 🪙 <span id="fail-portal-coins">0</span></p>
-                        <div class="revive-options">
-                            <button class="btn btn-primary btn-revive">Submit Hardcopy (🪙 50 / Free Premium)</button>
-                            <button class="btn btn-secondary btn-fail-exit">Back to Campus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAIL STATE D: SUDDEN INCIDENTS (E.g. Caught by invigilator, sleep in class) -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="fail-overlay-incident">
-                <div class="TEMPLATE-4weird-overlay-content fail-panel incident-panel">
-                    <h2 class="fail-header text-danger">ACADEMIC INCIDENT REPORTED</h2>
-                    <div class="fail-body">
-                        <p class="fail-message" id="fail-incident-msg">"Caught sleeping in class. GPA dropped instantly."</p>
-                        <p class="fail-stats">GPA at Incident: <span id="fail-incident-gpa">0.00</span></p>
-                        <div class="revive-options">
-                            <button class="btn btn-primary btn-revive">Appeal to Lecturer (🪙 50 / Free Premium)</button>
-                            <button class="btn btn-secondary btn-fail-exit">Back to Campus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VICTORY GRADUATION CELEBRATION -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="victory-overlay">
-                <div class="TEMPLATE-4weird-overlay-content victory-panel">
-                    <h1 class="victory-header">CONGRATULATIONS, COMRADE!</h1>
-                    <h2 class="victory-sub">YOU HAVE GRADUATED</h2>
-                    <div class="victory-body">
-                        <p class="victory-degree">Degree Classification:</p>
-                        <h3 id="victory-class-text" class="degree-classification">FIRST CLASS HONOURS</h3>
-                        
-                        <div class="victory-stats-grid">
-                            <div class="vic-stat"><span>Cumulative GPA</span><strong id="vic-gpa">4.00</strong></div>
-                            <div class="vic-stat"><span>Distance Covered</span><strong id="vic-dist">10,000m</strong></div>
-                            <div class="vic-stat"><span>Pocket Money Left</span><strong id="vic-coins">🪙 500</strong></div>
-                            <div class="vic-stat"><span>CATs Survived</span><strong id="vic-cats">8/8</strong></div>
-                            <div class="vic-stat"><span>Badges Unlocked</span><strong id="vic-badges">0/18</strong></div>
-                            <div class="vic-stat"><span>Skins Owned</span><strong id="vic-skins">0/10</strong></div>
-                        </div>
-
-                        <p class="endless-unlock-notice">🎉 Endless Alumni Mode is now unlocked! Run forever as a campus legend.</p>
-
-                        <div class="victory-buttons">
-                            <button class="btn btn-primary" id="btn-victory-endless">PLAY ENDLESS ALUMNI</button>
-                            <button class="btn btn-secondary" id="btn-victory-menu">MAIN MENU</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SATIRICAL AD SIMULATION OVERLAY -->
-            <div class="TEMPLATE-4weird-game-overlay hidden" id="ad-overlay">
-                <div class="ad-card">
-                    <div class="ad-header">
-                        <span class="ad-badge">SPONSORED AD</span>
-                        <span class="ad-timer" id="ad-timer-val">5s</span>
-                    </div>
-                    <div class="ad-content">
-                        <h3 id="ad-title">TRY MAMAS ROLEX</h3>
-                        <p id="ad-desc">Fuel your exams with hot, double-egg rolex. Best price on campus!</p>
-                        <div class="ad-visual" id="ad-emoji">🍳🌯</div>
-                    </div>
-                    <div class="ad-footer">
-                        <button class="btn btn-primary hidden" id="btn-close-ad">Skip Ad</button>
-                        <span class="ad-wait-text" id="ad-wait-lbl">Please wait...</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Game Info Panel (Glassmorphic Sidebar) -->
-        <aside class="TEMPLATE-4weird-game-info-panel">
-            <!-- Sound FX Board -->
-            <div class="TEMPLATE-4weird-panel-section sound-panel">
-                <h3><span>🔊</span> Audio Synth</h3>
-                <button class="sound-toggle-btn" id="TEMPLATE-4weird-mute-btn">🔊 Sound On</button>
-            </div>
-
-            <!-- High score -->
-            <div class="TEMPLATE-4weird-panel-section high-score-section">
-                <h3><span>🏆</span> High Score</h3>
-                <p class="TEMPLATE-4weird-high-score" id="TEMPLATE-4weird-high-score">0m</p>
-            </div>
-
-            <!-- How to Play -->
-            <div class="TEMPLATE-4weird-panel-section">
-                <h3><span>📖</span> Student Handbook</h3>
-                <p id="TEMPLATE-4weird-how-to-play">Dodge academic hazards (red exam papers, portal screens, deadlines) and collect items (coffee, cash, cards). Switch lanes with A/D, W to jump, S to slide. Boss fights occur near the end of each semester!</p>
-            </div>
-            
-            <!-- Controls reference with layout tab selector -->
-            <div class="TEMPLATE-4weird-panel-section">
-                <h3><span>⌨️</span> Controls</h3>
-                <div class="controls-tabs">
-                    <button class="tab-btn active" data-tab="keyboard-controls-content">Keyboard</button>
-                    <button class="tab-btn" data-tab="touch-controls-content">Touch Controls</button>
-                </div>
-                
-                <!-- Keyboard layout contents -->
-                <div class="controls-tab-content active" id="keyboard-controls-content">
-                    <ul id="TEMPLATE-4weird-keyboard-controls-list">
-                        <li><span>Switch Lane</span> <kbd>A / D</kbd> or <kbd>← / →</kbd></li>
-                        <li><span>Jump Obstacle</span> <kbd>W</kbd> or <kbd>↑</kbd></li>
-                        <li><span>Slide Obstacle</span> <kbd>S</kbd> or <kbd>↓</kbd></li>
-                        <li><span>Pause Game</span> <kbd>P</kbd> or <kbd>Escape</kbd></li>
-                    </ul>
-                </div>
-                
-                <!-- Touch layout contents -->
-                <div class="controls-tab-content" id="touch-controls-content">
-                    <ul id="TEMPLATE-4weird-touch-controls-list">
-                        <li><span>Switch Lane</span> <span>Swipe Left/Right or buttons</span></li>
-                        <li><span>Jump Obstacle</span> <span>Swipe Up or Jump button</span></li>
-                        <li><span>Slide Obstacle</span> <span>Swipe Down or Slide button</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Share buttons panel -->
-            <div class="TEMPLATE-4weird-panel-section share-section">
-                <h3><span>🔗</span> Brag Transcript</h3>
-                <div class="share-buttons">
-                    <button class="share-btn copy" onclick="copyGameLink()">📂 Copy Link</button>
-                    <a class="share-btn twitter" id="share-twitter" href="#" target="_blank" rel="noopener">🐦 Tweet/X</a>
-                    <a class="share-btn reddit" id="share-reddit" href="#" target="_blank" rel="noopener">👾 Reddit</a>
-                </div>
-            </div>
-        </aside>
-    </main>
-    
-    <!-- Credits Section -->
-    <section class="TEMPLATE-4weird-credits-section" id="TEMPLATE-4weird-credits">
-        <div class="TEMPLATE-4weird-credits-container">
-            <h2 class="TEMPLATE-4weird-credits-title">Development Crew</h2>
-            <div class="TEMPLATE-4weird-credits-grid" id="TEMPLATE-4weird-credits-grid">
-                <!-- Populated dynamically -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- Maker Bio Section -->
-    <section class="TEMPLATE-4weird-bio-section" id="TEMPLATE-4weird-bio">
-        <div class="TEMPLATE-4weird-bio-container">
-            <h2 class="TEMPLATE-4weird-bio-title">System Creator Bio</h2>
-            <div class="TEMPLATE-4weird-bio-content" id="TEMPLATE-4weird-maker-bio">
-                <!-- Populated dynamically -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- More Games Carousel Section -->
-    <section class="TEMPLATE-4weird-more-games">
-        <div class="TEMPLATE-4weird-more-games-container">
-            <div class="TEMPLATE-4weird-more-games-header">
-                <h2>Network Grid Nodes (More Games)</h2>
-                <div class="carousel-nav">
-                    <button class="carousel-nav-btn" id="carousel-prev" aria-label="Previous Games">◀</button>
-                    <button class="carousel-nav-btn" id="carousel-next" aria-label="Next Games">▶</button>
-                </div>
-            </div>
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="more-games-carousel-track">
-                    <!-- Loaded dynamically from components.js -->
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer placeholder - injected by components.js -->
-    <div id="TEMPLATE-4weird-footer-placeholder"></div>
-    
-    <!-- Game Scripts -->
-    <script src="../../../components.js"></script>
-    <script src="sound.js"></script>
-    <script src="state.js"></script>
-    <script src="controls.js"></script>
-    <script src="renderer.js"></script>
-    <script src="ui.js"></script>
-    <script src="game.js"></script>
-    
-    <script>
-        function copyGameLink() {
-            navigator.clipboard.writeText(window.location.href);
-            alert("Game link copied to clipboard! 📋");
-        }
-    </script>
-</body>
-</html>
+<body class="TEMPLATE-4weird-game-page ss-page">
+<div id="TEMPLATE-4weird-nav-placeholder"></div>
+<header class="TEMPLATE-4weird-game-header ss-site-header"><div class="TEMPLATE-4weird-game-header-inner">
+<a class="TEMPLATE-4weird-back-link" href="../../../index.html#games"><span class="TEMPLATE-4weird-back-arrow">←</span><span>Back to 4weird</span></a>
+<div class="ss-brand"><span class="ss-brand-mark">SS</span><span><strong>SEMESTER SURVIVAL</strong><small>THE CAMPUS YEARS</small></span></div>
+<div class="TEMPLATE-4weird-game-meta"><span class="TEMPLATE-4weird-game-genre">2D Anime Life Simulation</span><span class="TEMPLATE-4weird-game-status live">CAMPUS OPEN</span></div>
+</div></header>
+<main class="ss-shell">
+<section class="ss-game-column">
+<div class="ss-topline"><div><span class="ss-eyebrow">YOUR UNIVERSITY STORY</span><h1>A new chapter begins.</h1></div><div class="ss-day-chip"><span id="day-label">MONDAY</span><strong id="clock-label">08:00</strong></div></div>
+<div class="ss-stage-wrap"><div class="ss-stage-sky"></div><canvas id="game-canvas" width="960" height="620" aria-label="2D anime-inspired university campus. Use WASD or arrow keys to move."></canvas>
+<div class="ss-location-pill"><span class="ss-pulse"></span><span id="location-label">University Green</span></div><div class="ss-stage-tip" id="stage-tip">WASD / arrows to move · E to interact</div>
+<div class="ss-interact-prompt hidden" id="interact-prompt"><span>E</span><strong id="interact-text">Interact</strong></div>
+<div class="ss-mobile-pad"><button data-move="up" aria-label="Move up">▲</button><div><button data-move="left" aria-label="Move left">◀</button><button data-move="down" aria-label="Move down">▼</button><button data-move="right" aria-label="Move right">▶</button></div></div></div>
+<div class="ss-hud-row">
+<div class="ss-stat"><span class="ss-stat-icon">♡</span><div><small>ENERGY</small><strong id="energy-value">82%</strong><div class="ss-meter"><i id="energy-meter"></i></div></div></div>
+<div class="ss-stat"><span class="ss-stat-icon">☀</span><div><small>HUNGER</small><strong id="hunger-value">28%</strong><div class="ss-meter hunger"><i id="hunger-meter"></i></div></div></div>
+<div class="ss-stat"><span class="ss-stat-icon">✦</span><div><small>FOCUS</small><strong id="focus-value">74%</strong><div class="ss-meter focus"><i id="focus-meter"></i></div></div></div>
+<div class="ss-stat"><span class="ss-stat-icon">⌁</span><div><small>STRESS</small><strong id="stress-value">18%</strong><div class="ss-meter stress"><i id="stress-meter"></i></div></div></div>
+</div>
+<div class="ss-actionbar"><button class="ss-action active" data-panel="journal"><span>▤</span>Journal</button><button class="ss-action" data-panel="schedule"><span>◷</span>Schedule</button><button class="ss-action" data-panel="tasks"><span>✓</span>Tasks <b id="task-count">3</b></button><button class="ss-action" data-panel="friends"><span>♡</span>People</button><button class="ss-action" data-panel="shop"><span>✧</span>Campus shop</button></div>
+</section>
+<aside class="ss-side-column">
+<section class="ss-profile-card"><div class="ss-profile-top"><div class="ss-avatar" id="player-avatar">J</div><div><small>YOUR STUDENT PROFILE</small><h2 id="student-name">New Student</h2><p id="student-course">First year · Semester 1</p></div><button class="ss-icon-btn" id="profile-edit" aria-label="Edit profile">✎</button></div>
+<div class="ss-profile-stats"><div><small>GPA</small><strong id="gpa-value">3.42</strong></div><div><small>WALLET</small><strong id="cash-value">KSh 2,500</strong></div><div><small>FRIENDS</small><strong id="friends-value">02</strong></div></div>
+<div class="ss-progress"><div><span>SEMESTER PROGRESS</span><strong id="progress-label">Week 1 of 12</strong></div><div class="ss-progress-track"><i id="semester-progress"></i></div></div></section>
+<section class="ss-panel ss-current-panel" id="panel-journal"><div class="ss-panel-heading"><div><span class="ss-eyebrow">CAMPUS JOURNAL</span><h2>Today at a glance</h2></div><span class="ss-weather">☀ 24°</span></div>
+<div class="ss-quest-card"><span class="ss-quest-icon">✦</span><div><small>YOUR MAIN GOAL</small><strong id="main-goal">Make it to your first lecture</strong><p id="goal-description">Head to the lecture hall before 09:00.</p></div></div>
+<div class="ss-feed" id="journal-feed"><p><b>08:00</b> A fresh semester. A fresh start.</p></div><div class="ss-panel-footer"><span>ONE DAY AT A TIME</span><button id="rest-button">Rest for a while ↗</button></div></section>
+<section class="ss-panel hidden" id="panel-schedule"><div class="ss-panel-heading"><div><span class="ss-eyebrow">YOUR WEEK</span><h2>Class timetable</h2></div><span class="ss-weather">Week <b id="schedule-week">1</b></span></div><div class="ss-schedule-list" id="schedule-list"></div><p class="ss-muted">Attend classes to protect your GPA. Arriving late still counts, but costs focus.</p></section>
+<section class="ss-panel hidden" id="panel-tasks"><div class="ss-panel-heading"><div><span class="ss-eyebrow">DEADLINES ARE REAL</span><h2>Assignments & goals</h2></div><span class="ss-count" id="open-task-count">03 OPEN</span></div><div class="ss-task-list" id="task-list"></div></section>
+<section class="ss-panel hidden" id="panel-friends"><div class="ss-panel-heading"><div><span class="ss-eyebrow">YOUR CAMPUS CIRCLE</span><h2>People you know</h2></div><span class="ss-count">RELATIONSHIPS</span></div><div class="ss-friend-list" id="friend-list"></div><p class="ss-muted">Talk to people around campus to build friendships. Good friends can help when the semester gets tough.</p></section>
+<section class="ss-panel hidden" id="panel-shop"><div class="ss-panel-heading"><div><span class="ss-eyebrow">CAMPUS MARKET</span><h2>Little essentials</h2></div><span class="ss-wallet" id="shop-wallet">KSh 2,500</span></div><div class="ss-shop-tabs"><button class="selected" data-shop="items">Essentials</button><button data-shop="characters">Looks</button><button data-shop="upgrades">Habits</button></div><div id="shop-items" class="ss-shop-list"></div></section>
+<section class="ss-panel hidden" id="panel-profile"><div class="ss-panel-heading"><div><span class="ss-eyebrow">MAKE IT YOURS</span><h2>Student details</h2></div></div>
+<label class="ss-field">Display name<input id="name-input" maxlength="24" value="New Student"></label><label class="ss-field">Course<select id="course-input"><option>Data Science</option><option>Computer Science</option><option>Business</option><option>Engineering</option><option>Medicine</option><option>Arts & Humanities</option><option>Other</option></select></label>
+<button class="ss-primary-btn" id="save-profile">Save profile</button><button class="ss-text-btn" id="reset-progress">Reset saved progress</button></section>
+</aside></main>
+<div class="ss-bottom-strip"><div><span class="ss-live-dot"></span> YOUR STORY IS SAVED ON THIS DEVICE</div><div><span>MOVE</span> WASD / ARROWS <span>INTERACT</span> E / SPACE <span>PAUSE</span> P / ESC</div></div>
+<div class="ss-modal hidden" id="dialogue-modal" role="dialog" aria-modal="true" aria-labelledby="dialogue-title"><div class="ss-dialogue-card"><div class="ss-dialogue-art" id="dialogue-art">✦</div><div class="ss-dialogue-copy"><span class="ss-eyebrow" id="dialogue-kicker">CAMPUS MOMENT</span><h2 id="dialogue-title">A moment on campus</h2><p id="dialogue-body"></p><div class="ss-choice-list" id="dialogue-choices"></div></div><button class="ss-close" id="dialogue-close" aria-label="Close">×</button></div></div>
+<div class="ss-toast" id="toast" role="status"></div>
+<section class="TEMPLATE-4weird-credits-section ss-credits" id="TEMPLATE-4weird-credits"><div class="TEMPLATE-4weird-credits-container"><h2 class="TEMPLATE-4weird-credits-title">The people behind the story</h2><div class="TEMPLATE-4weird-credits-grid" id="TEMPLATE-4weird-credits-grid"></div></div></section>
+<section class="TEMPLATE-4weird-bio-section ss-bio" id="TEMPLATE-4weird-bio"><div class="TEMPLATE-4weird-bio-container"><h2 class="TEMPLATE-4weird-bio-title">About the maker</h2><div class="TEMPLATE-4weird-bio-content" id="TEMPLATE-4weird-maker-bio"></div></div></section>
+<section class="ss-share"><div><span class="ss-eyebrow">KNOW SOMEONE WHO NEEDS A DEGREE?</span><h2>Send them back to campus.</h2></div><div class="ss-share-actions"><button id="share-copy">Copy game link</button><a id="share-twitter" href="#" target="_blank" rel="noopener">Share on X ↗</a><a id="share-reddit" href="#" target="_blank" rel="noopener">Reddit ↗</a></div></section>
+<div class="TEMPLATE-4weird-more-games"><div class="TEMPLATE-4weird-more-games-container"><div class="TEMPLATE-4weird-more-games-header"><h2>More from 4weird</h2><div class="carousel-nav"><button class="carousel-nav-btn" id="carousel-prev" aria-label="Previous Games">◀</button><button class="carousel-nav-btn" id="carousel-next" aria-label="Next Games">▶</button></div></div><div class="carousel-wrapper"><div class="carousel-track" id="more-games-carousel-track"></div></div></div></div>
+<div id="TEMPLATE-4weird-footer-placeholder"></div>
+<!-- Game concept and code: Joseph Ombati. Hosted and showcased by 4weird Games. All rights reserved. -->
+<script type="application/json" id="game-metadata">{"title":"Semester Survival","maker":{"name":"Joseph Ombati & Antigravity","bio":"Semester Survival began as an idea from Joseph Ombati: a university-life simulation about the funny, stressful and unforgettable moments that shape a student. Built for players who know that making it to graduation is about more than passing exams. The game celebrates campus friendships, small wins, difficult choices and the everyday courage it takes to keep going.","url":"https://4weird.games","urlLabel":"4weird Games"},"credits":[{"name":"Joseph Ombati","role":"Original Concept, Game Design & Creative Direction","avatar":"🎓","primary":true},{"name":"Antigravity","role":"Lead Development & Interface Design","avatar":"🤖","primary":true,"url":"https://4weird.games","urlLabel":"4weird"},{"name":"MattyJacks","role":"Producer & Platform Architect","avatar":"👑","primary":false,"url":"https://mattyjacks.com","urlLabel":"MattyJacks"}]}</script>
+<script src="../../../components.js"></script><script src="sound.js"></script><script src="state.js"></script><script src="controls.js"></script><script src="renderer.js"></script><script src="ui.js"></script><script src="game.js"></script>
+</body></html>

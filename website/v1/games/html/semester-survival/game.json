@@ -44,19 +44,21 @@
   ],
   "controls": {
     "keyboard": {
-      "WASD / Arrow Keys": "Walk around campus",
+      "Arrow Left / Right": "Change between the three campus lanes",
+      "Arrow Up": "Jump",
+      "Arrow Down": "Slide",
       "E / Space": "Talk, attend, study or interact",
-      "P / Escape": "Pause or resume",
-      "Shift": "Run while moving"
+      "P / Escape": "Pause or resume"
     },
     "touch": {
-      "Directional Pad": "Move around campus",
-      "Interact prompt": "Use the on-screen interaction prompt",
-      "Run button": "Hold RUN while using the directional pad"
+      "Swipe Left / Right": "Change lanes",
+      "Swipe Up": "Jump",
+      "Swipe Down": "Slide",
+      "Interact prompt": "Tap when near a character or campus location"
     },
-    "mouse": true
+    "mouse": false
   },
-  "instructions": "Explore the university campus, attend lectures, study in the library, eat at the cafeteria, complete assignments, earn and spend money, and build friendships. Keep your energy, hunger, focus and stress in balance. Complete eight semesters and graduate. Hold Shift on keyboard or RUN on mobile to move faster.",
+  "instructions": "Run through the university campus. Swipe left or right on mobile to change lanes, swipe up to jump and swipe down to slide. On PC use the arrow keys: left/right to change lanes, up to jump and down to slide. Press E or Space to interact when near a character or campus location. Balance your energy, hunger, focus and stress, complete assignments, build friendships and graduate after eight semesters.",
   "technical": {
     "canvasSize": {
       "width": 960,
@@ -87,7 +89,7 @@
     ]
   },
   "meta": {
-    "version": "2.1.0",
+    "version": "2.2.0",
     "created": "2026-11-14",
     "license": "Private - All Rights Reserved",
     "ownership": "Joseph Ombati retains full ownership of the game and code. 4weird is granted the right to host and showcase the game under its contributor terms."
